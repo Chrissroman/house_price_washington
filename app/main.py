@@ -26,6 +26,10 @@ randomF_model = joblib.load(randomF_path)
 lassoR_path = path + 'lassoRegression.pkl'
 lassoR_model = joblib.load(lassoR_path)
 
+# Polynomial Lasso Regression
+polyLasso_path = path + 'polyLasso.pkl'
+polyLasso_model = joblib.load(polyLasso_path)
+
 # Loading Scaler
 path = '../scalers/'
 scaler_path = path + 'min_max.pkl'
@@ -121,7 +125,9 @@ if st.button("Get your prediction"):
     linearR_prediction = linearR_model.predict(X_scaled)
     randomF_prediction = randomF_model.predict(X_scaled)
     lassoR_prediction = lassoR_model.predict(X_scaled)
+    polyLasso_prediction = polyLasso_model.predict(X_scaled)
 
     st.success("The Price predict through Linear Regression is: {}".format(round(np.expm1(linearR_prediction[0]), 2)))
     st.success("The Price predict through Random Forest Regression is: {}".format(round(np.expm1(randomF_prediction[0]), 2)))
     st.success("The Price predict through Lasso Regression is: {}".format(round(np.expm1(lassoR_prediction[0]), 2)))
+    st.success("The Price predict through Polynomial Lasso Regression is: {}".format(round(np.expm1(polyLasso_prediction[0]), 2)))
